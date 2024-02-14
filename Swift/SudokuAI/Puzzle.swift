@@ -117,11 +117,11 @@ struct PuzzleDetail: View {
                         Text("Original squares in black")
                             .italic()
                             .font(.system(size: 14))
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.primary)
                         Text("Solved squares in blue")
                             .italic()
                             .font(.system(size: 14))
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color(UIColor.link))
                     }
                     if (item.isPlaying) {
                         HStack {
@@ -165,7 +165,7 @@ struct PuzzleDetail: View {
                         .padding()
                         .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 160 : 80)
                         .foregroundColor(Color.white)
-                        .background(resetButtonDisabled ? Color.gray : Color.blue)
+                        .background(resetButtonDisabled ? Color.gray : Color(UIColor.link))
                         .cornerRadius(15.0)
                     }
                     .disabled(resetButtonDisabled)
@@ -220,7 +220,7 @@ struct PuzzleDetail: View {
                         .padding()
                         .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 160 : 80)
                         .foregroundColor(Color.white)
-                        .background(playButtonDisabled ? Color.gray : Color.blue)
+                        .background(playButtonDisabled ? Color.gray : Color(UIColor.link))
                         .cornerRadius(15.0)
                     }
                     .disabled(playButtonDisabled)
@@ -249,7 +249,7 @@ struct PuzzleDetail: View {
                         .padding()
                         .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 160 : 80)
                         .foregroundColor(Color.white)
-                        .background(hintButtonDisabled ? Color.gray : Color.blue)
+                        .background(hintButtonDisabled ? Color.gray : Color(UIColor.link))
                         .cornerRadius(15.0)
                     }
                     .disabled(hintButtonDisabled)
@@ -275,7 +275,7 @@ struct PuzzleDetail: View {
                         .padding()
                         .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 160 : 80)
                         .foregroundColor(Color.white)
-                        .background(solveButtonDisabled ? Color.gray : Color.blue)
+                        .background(solveButtonDisabled ? Color.gray : Color(UIColor.link))
                         .cornerRadius(15.0)
                     }
                     .disabled(solveButtonDisabled)
@@ -337,59 +337,59 @@ struct GridCell: View {
                 // Display 9 values.
                 // DEBUG: let x = print("PLAY MULTI: \(square): \(item.currentValues[square]!.count)")
                 GridCellMulti(values: item.currentValues[square]!, item: item)
-                    .foregroundColor(item.gridState(row: rowIndex, column: columnIndex) ? Color.blue : Color.black)
+                    .foregroundColor(item.gridState(row: rowIndex, column: columnIndex) ? Color(UIColor.link) : Color.primary)
                     .frame(width: geometry.size.width, height: geometry.size.width, alignment: .center)
                     .background(Rectangle().stroke())
                     // Left
-                    .overlay(Rectangle().frame(width: columnIndex == 0 ? 2 : 0, height: nil, alignment: .leading).foregroundColor(Color.black), alignment: .leading)
+                    .overlay(Rectangle().frame(width: columnIndex == 0 ? 2 : 0, height: nil, alignment: .leading).foregroundColor(Color.primary), alignment: .leading)
                     // Right
-                    .overlay(Rectangle().frame(width: columnIndex == 8 ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.black), alignment: .trailing)
+                    .overlay(Rectangle().frame(width: columnIndex == 8 ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.primary), alignment: .trailing)
                     // Top
-                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 0 ? 2 : 0, alignment: .top).foregroundColor(Color.black), alignment: .top)
+                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 0 ? 2 : 0, alignment: .top).foregroundColor(Color.primary), alignment: .top)
                     // Bottom
-                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 8 ? 2 : 0, alignment: .bottom).foregroundColor(Color.black), alignment: .bottom)
+                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 8 ? 2 : 0, alignment: .bottom).foregroundColor(Color.primary), alignment: .bottom)
                     // Middle Rows
-                    .overlay(Rectangle().frame(width: nil, height: (rowIndex == 2 || rowIndex == 5) ? 2 : 0, alignment: .bottom).foregroundColor(Color.black), alignment: .bottom)
+                    .overlay(Rectangle().frame(width: nil, height: (rowIndex == 2 || rowIndex == 5) ? 2 : 0, alignment: .bottom).foregroundColor(Color.primary), alignment: .bottom)
                     // Middle Columns
-                    .overlay(Rectangle().frame(width: (columnIndex == 2 || columnIndex == 5) ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.black), alignment: .trailing)
+                    .overlay(Rectangle().frame(width: (columnIndex == 2 || columnIndex == 5) ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.primary), alignment: .trailing)
             }
             else if (!item.currentValues.isEmpty && item.currentValues[square]!.count == 1) {
                 // Display one large number.
                 // DEBUG: let x = print("PLAY SINGLE: \(square): \(item.currentValues[square]!)")
                 Text(item.currentValues[square]!)
-                    .foregroundColor(item.gridState(row: rowIndex, column: columnIndex) ? Color.blue : Color.black)
+                    .foregroundColor(item.gridState(row: rowIndex, column: columnIndex) ? Color(UIColor.link) : Color.primary)
                     .frame(width: geometry.size.width, height: geometry.size.width, alignment: .center)
                     .background(Rectangle().stroke())
                     // Left
-                    .overlay(Rectangle().frame(width: columnIndex == 0 ? 2 : 0, height: nil, alignment: .leading).foregroundColor(Color.black), alignment: .leading)
+                    .overlay(Rectangle().frame(width: columnIndex == 0 ? 2 : 0, height: nil, alignment: .leading).foregroundColor(Color.primary), alignment: .leading)
                     // Right
-                    .overlay(Rectangle().frame(width: columnIndex == 8 ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.black), alignment: .trailing)
+                    .overlay(Rectangle().frame(width: columnIndex == 8 ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.primary), alignment: .trailing)
                     // Top
-                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 0 ? 2 : 0, alignment: .top).foregroundColor(Color.black), alignment: .top)
+                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 0 ? 2 : 0, alignment: .top).foregroundColor(Color.primary), alignment: .top)
                     // Bottom
-                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 8 ? 2 : 0, alignment: .bottom).foregroundColor(Color.black), alignment: .bottom)
+                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 8 ? 2 : 0, alignment: .bottom).foregroundColor(Color.primary), alignment: .bottom)
                     // Middle Rows
-                    .overlay(Rectangle().frame(width: nil, height: (rowIndex == 2 || rowIndex == 5) ? 2 : 0, alignment: .bottom).foregroundColor(Color.black), alignment: .bottom)
+                    .overlay(Rectangle().frame(width: nil, height: (rowIndex == 2 || rowIndex == 5) ? 2 : 0, alignment: .bottom).foregroundColor(Color.primary), alignment: .bottom)
                     // Middle Columns
-                    .overlay(Rectangle().frame(width: (columnIndex == 2 || columnIndex == 5) ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.black), alignment: .trailing)
+                    .overlay(Rectangle().frame(width: (columnIndex == 2 || columnIndex == 5) ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.primary), alignment: .trailing)
             }
             else {
                 Text(number == "." ? " " : number)
-                    .foregroundColor(item.gridState(row: rowIndex, column: columnIndex) ? Color.blue : Color.black)
+                    .foregroundColor(item.gridState(row: rowIndex, column: columnIndex) ? Color(UIColor.link) : Color.primary)
                     .frame(width: geometry.size.width, height: geometry.size.width, alignment: .center)
                     .background(Rectangle().stroke())
                     // Left
-                    .overlay(Rectangle().frame(width: columnIndex == 0 ? 2 : 0, height: nil, alignment: .leading).foregroundColor(Color.black), alignment: .leading)
+                    .overlay(Rectangle().frame(width: columnIndex == 0 ? 2 : 0, height: nil, alignment: .leading).foregroundColor(Color.primary), alignment: .leading)
                     // Right
-                    .overlay(Rectangle().frame(width: columnIndex == 8 ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.black), alignment: .trailing)
+                    .overlay(Rectangle().frame(width: columnIndex == 8 ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.primary), alignment: .trailing)
                     // Top
-                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 0 ? 2 : 0, alignment: .top).foregroundColor(Color.black), alignment: .top)
+                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 0 ? 2 : 0, alignment: .top).foregroundColor(Color.primary), alignment: .top)
                     // Bottom
-                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 8 ? 2 : 0, alignment: .bottom).foregroundColor(Color.black), alignment: .bottom)
+                    .overlay(Rectangle().frame(width: nil, height: rowIndex == 8 ? 2 : 0, alignment: .bottom).foregroundColor(Color.primary), alignment: .bottom)
                     // Middle Rows
-                    .overlay(Rectangle().frame(width: nil, height: (rowIndex == 2 || rowIndex == 5) ? 2 : 0, alignment: .bottom).foregroundColor(Color.black), alignment: .bottom)
+                    .overlay(Rectangle().frame(width: nil, height: (rowIndex == 2 || rowIndex == 5) ? 2 : 0, alignment: .bottom).foregroundColor(Color.primary), alignment: .bottom)
                     // Middle Columns
-                    .overlay(Rectangle().frame(width: (columnIndex == 2 || columnIndex == 5) ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.black), alignment: .trailing)
+                    .overlay(Rectangle().frame(width: (columnIndex == 2 || columnIndex == 5) ? 2 : 0, height: nil, alignment: .trailing).foregroundColor(Color.primary), alignment: .trailing)
                     .onTapGesture {
                         if (canEdit) {
                             // Increment that square and save.
